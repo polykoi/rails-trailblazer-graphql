@@ -1,0 +1,98 @@
+require: rubocop-rspec
+
+AllCops:
+  Exclude:
+    - 'bin/**/*'
+    - 'db/**/*' # TODO try to remove
+    - 'vendor/**/*'
+    - 'spec/fixtures/**/*'
+    - 'tmp/**/*'
+  TargetRubyVersion: 2.5.1
+
+Rails:
+  Enabled: true
+
+# Uncomment if needed
+# Naming/UncommunicativeMethodParamName:
+#   AllowedNames:
+#     - '' # https://github.com/bbatsov/rubocop/issues/5627
+#
+# Naming/UncommunicativeBlockParamName:
+#   AllowedNames:
+#     - '' # https://github.com/bbatsov/rubocop/issues/5627
+
+# FrozenStringLiteralComment:
+#   Enabled: false # TODO try to remove
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 120
+  Exclude:
+    - 'Rakefile'
+    - '**/*.rake'
+    - 'config/routes.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'config/**/*.rb'
+    - 'app/concepts/**/contract/*.rb'
+    - 'Rakefile'
+    - '**/*.rake'
+    - 'spec/**/*.rb'
+    - 'config/routes.rb'
+
+Style/LambdaCall:
+  Exclude:
+    - 'app/controllers/**/*.rb' # using Trailblazer Operation.() syntax
+
+Layout/AlignHash:
+  Exclude:
+    - 'spec/requests/**/*.rb'
+
+Layout/IndentArray:
+  EnforcedStyle: consistent
+
+Style/SignalException:
+  Exclude:
+    - 'app/concepts/**/*.rb'
+
+Lint/UnreachableCode:
+  Exclude:
+    - 'app/concepts/**/*.rb'
+
+# RSpec/FilePath:
+#   Exclude:
+#     - 'spec/concepts/**/*.rb'
+
+# RSpec/MultipleExpectations:
+#   Enabled: false
+
+# RSpec/ExampleLength:
+#   Max: 22
+
+# RSpec/MessageSpies:
+#   EnforcedStyle: receive
+
+# RSpec/EmptyExampleGroup:
+#   Exclude:
+#     - 'spec/requests/**/*.rb'
+
+# RSpec/DescribeClass:
+#   Exclude:
+#     - 'spec/requests/**/*.rb'
+
+# RSpec/HookArgument:
+#   EnforcedStyle: each
+
+# RSpec/SharedExamples:
+#   Exclude:
+#     - 'spec/mailers/**/*.rb'
+
+# RSpec/ContextWording:
+#   Exclude:
+#     - 'spec/models/**/*.rb'
+
+# RSpec/MessageChain:
+#   Enabled: false
