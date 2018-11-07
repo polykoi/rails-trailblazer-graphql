@@ -3,11 +3,11 @@ require: rubocop-rspec
 AllCops:
   Exclude:
     - 'bin/**/*'
-    - 'db/**/*' # TODO try to remove
+    # - 'db/**/*' # TODO try to remove
     - 'vendor/**/*'
     - 'spec/fixtures/**/*'
     - 'tmp/**/*'
-  TargetRubyVersion: 2.5.1
+  TargetRubyVersion: 2.5.3
 
 Rails:
   Enabled: true
@@ -20,9 +20,6 @@ Rails:
 # Naming/UncommunicativeBlockParamName:
 #   AllowedNames:
 #     - '' # https://github.com/bbatsov/rubocop/issues/5627
-
-# FrozenStringLiteralComment:
-#   Enabled: false # TODO try to remove
 
 Style/Documentation:
   Enabled: false
@@ -83,8 +80,8 @@ Lint/UnreachableCode:
 #   Exclude:
 #     - 'spec/requests/**/*.rb'
 
-# RSpec/HookArgument:
-#   EnforcedStyle: each
+# # RSpec/HookArgument:
+# #   EnforcedStyle: each
 
 # RSpec/SharedExamples:
 #   Exclude:

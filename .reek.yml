@@ -1,0 +1,50 @@
+detectors:
+  UnusedPrivateMethod:
+    enabled: true
+
+  IrresponsibleModule:
+    enabled: false
+
+  UncommunicativeModuleName:
+    accept:
+    - V1
+
+directories:
+  'spec/support/':
+    UtilityFunction:
+      enabled: false
+
+  'config/initializers/constants':
+    TooManyConstants:
+      enabled: false
+
+  # # Disabled smells that react on Trailblazer operation usage in controllers
+  # 'app/controllers':
+  #   RepeatedConditional:
+  #     enabled: false
+  #   FeatureEnvy:
+  #     enabled: false
+
+  # # Disabled smells messing with Trailblazer
+  # 'app/concepts':
+  #   UtilityFunction:
+  #     enabled: false
+  #   LongParameterList:
+  #     max_params: 5
+  #   NilCheck:
+  #     enabled: false
+  #   PrimaDonnaMethod:
+  #     enabled: false
+  #   DuplicateMethodCall:
+  #     allow_calls:
+  #       - 'ctx'
+  #   FeatureEnvy:
+  #     enabled: false
+
+
+  'app/mailers':
+    InstanceVariableAssumption:
+      enabled: false
+
+# exclude_paths:
+#   - db/

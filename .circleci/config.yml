@@ -1,0 +1,111 @@
+defaults: &defaults
+  working_directory: ~/rails-trailblazer-graphql
+  docker:
+    - image: circleci/ruby:2.5.3-node
+      environment:
+        PGHOST: 127.0.0.1
+        PGUSER: root
+        RAILS_ENV: test
+
+    - image: circleci/postgres:10-alpine
+      environment:
+        POSTGRES_USER: root
+        POSTGRES_DB: circle_test
+        POSTGRES_PASSWORD: ""
+    - image: redis
+
+references:
+  restore_bundle_cache: &restore_bundle_cache
+    restore_cache:
+      keys:
+        - rails-trailblazer-graphql-{{ checksum "Gemfile.lock" }}
+
+  bundle_install: &bundle_install
+    run:
+      name: Installing gems
+      command: bundle install --path vendor/bundle
+
+  save_bundle_cache: &save_bundle_cache
+    save_cache:
+      key: rails-trailblazer-graphql-{{ checksum "Gemfile.lock" }}
+      paths:
+        - vendor/bundle
+
+version: 2
+
+jobs:
+  linters:
+    <<: *defaults
+
+    enviromnment:
+      - RAILS_ENV: test
+
+    steps:
+      - checkout
+
+      - run:
+          name: Installing dependency for undercover gem
+          command: sudo apt-get install cmake
+
+      - <<: *restore_bundle_cache
+      - <<: *bundle_install
+      - <<: *save_bundle_cache
+
+      - run:
+          name: Running overcommit
+          command: |
+            bundle exec overcommit -s
+            SKIP=AuthorEmail,AuthorName bundle exec overcommit -r
+
+  tests:
+    <<: *defaults
+
+    enviromnment:
+      - RAILS_ENV: test
+
+    steps:
+      - checkout
+
+      - run:
+          name: Installing dependency for undercover gem
+          command: sudo apt-get install cmake
+
+      - <<: *restore_bundle_cache
+      - <<: *bundle_install
+      - <<: *save_bundle_cache
+
+      - run:
+          name: Preparing database config
+          command: cp config/database.yml.sample config/database.yml
+
+      - run:
+          name: Creating database
+          command: bundle exec rails db:create
+
+      - run:
+          name: Loading schema
+          command: bundle exec rails db:schema:load
+
+      - run:
+          name: Develop
+          command: git pull -f origin develop:develop
+
+      - run:
+          name: Running tests
+          command: bundle exec rspec
+
+      - run:
+          name: Coverage
+          command: bundle exec undercover -c develop
+
+      - store_artifacts:
+          path: ~/rails-trailblazer-graphql/coverage
+          destination: coverage
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - linters
+
+      - tests

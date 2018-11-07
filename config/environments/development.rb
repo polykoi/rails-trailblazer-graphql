@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -35,6 +37,13 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  # Default configuration for letter_opener
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.smtp_settings = { address: 'localhost', port: 1025 }
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  config.default_sender_email = 'no-reply@r-trb-g.com'
+  config.client_url = 'http://lvh.me:1234'
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
@@ -44,11 +53,20 @@ Rails.application.configure do
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
 
-
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  # Trailblazer tracing
+  config.trailblazer.enable_tracing = true
+
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.bullet_logger = true
+    Bullet.console = true
+    Bullet.rails_logger = true
+  end
 end
