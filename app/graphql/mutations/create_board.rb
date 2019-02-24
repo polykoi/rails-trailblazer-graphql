@@ -1,28 +1,13 @@
 module Mutations
-  class CreateBoard < GraphQL::Schema::Mutation
+  class CreateBoard < Mutations::Base
     argument :name, String, required: true
     argument :description, String, required: false
 
     field :board, Types::BoardType, null: true
-    field :errors, [String], null: false
+    field :errors, [Types::ErrorType], null: false
 
-    def resolve(name:, description: nil)
-
-      binding.pry
-
-      board = Board.create(name: name, description: description)
-      if board.save
-        {
-          board: board,
-          errors: []
-        }
-      else
-        {
-          board: nil,
-          errors: ['lol fail']
-        }
-      end
-
+    def resolve(**params)
+      orchestrate Boards::Operation::Create, :board, params: params
     end
   end
 end

@@ -1,5 +1,5 @@
 module Types
-  class MutationType < Types::BaseObject
+  class MutationType < GraphQL::Schema::Object
     field :create_board, mutation: Mutations::CreateBoard
   end
 end
