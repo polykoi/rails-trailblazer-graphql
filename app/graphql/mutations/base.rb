@@ -5,6 +5,11 @@ module Mutations
     def orchestrate(operation, field_name, options = {})
       result = operation.call(options)
 
+      binding.pry
+      if result['result.model'].failure?
+        
+      end
+
       if result.success?
         {
           field_name => result[:model],
