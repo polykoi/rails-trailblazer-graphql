@@ -1,3 +1,4 @@
 en:
   errors:
     name_unique: must be unique
+    not_found: not found

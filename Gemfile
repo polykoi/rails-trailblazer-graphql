@@ -32,6 +32,9 @@ gem 'draper'
 # GraphQL serializer
 gem 'graphql'
 
+# ActiveRecord ordering
+gem 'acts_as_list'
+
 # Role management
 # gem 'rolify'
 

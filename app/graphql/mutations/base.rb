@@ -5,23 +5,20 @@ module Mutations
     def orchestrate(operation, field_name, options = {})
       result = operation.call(options)
 
-      binding.pry
-      if result['result.model'].failure?
-        
-      end
-
       if result.success?
         {
           field_name => result[:model],
           errors: []
         }
       else
+        errors = result['result.contract.default']&.errors || Reform::Form::Errors.new
+        errors.add(:base, I18n.t('errors.not_found')) if result['result.model'].failure?
+
         {
           field_name => nil,
-          errors: Lib::Service::ErrorsConverter.call(result['result.contract.default'].errors.messages)
+          errors: Lib::Service::ErrorsConverter.call(errors.messages)
         }
       end
-
     end
   end
 end
