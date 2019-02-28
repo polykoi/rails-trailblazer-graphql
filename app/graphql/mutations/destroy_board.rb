@@ -1,5 +1,5 @@
 module Mutations
-  class DeleteBoard < Mutations::Base
+  class DestroyBoard < Mutations::Base
     argument :id, ID, required: true
 
     field :board, Types::BoardType, null: true

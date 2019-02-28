@@ -1,6 +1,6 @@
 module Boards::Statuses::Operation
   class Create < Trailblazer::Operation
-    step Model(Board, :find_by_id, params_key: :board_id)
+    step Model(::Board, :find_by_id, :board_id)
 
     step :model
 
@@ -9,7 +9,7 @@ module Boards::Statuses::Operation
     step Contract::Persist()
 
     def model(ctx, model:, **)
-      ctx[:model] = model.build_status
+      ctx[:model] = model.statuses.build
     end
   end
 end

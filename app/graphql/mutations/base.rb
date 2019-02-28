@@ -12,7 +12,7 @@ module Mutations
         }
       else
         errors = result['result.contract.default']&.errors || Reform::Form::Errors.new
-        errors.add(:base, I18n.t('errors.not_found')) if result['result.model'].failure?
+        errors.add(result['model.find_by_key'], I18n.t('errors.not_found')) if result['result.model'].failure?
 
         {
           field_name => nil,

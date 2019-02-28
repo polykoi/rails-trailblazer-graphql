@@ -12,7 +12,7 @@ module Boards::Statuses::Contract
       required(:name).filled(:str?, min_size?: NAME_MIN_LENGTH, max_size?: NAME_MAX_LENGTH)
 
       validate(name_unique: [:name]) do |name|
-        Statuses.where(name: name).empty?
+        Status.where(name: name).empty?
       end
     end
   end
