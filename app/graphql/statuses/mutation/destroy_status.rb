@@ -1,5 +1,5 @@
 module Mutations
-  class DestroyStatus < Mutations::Base
+  class DestroyStatus < BaseMutations
     argument :id, ID, required: true
 
     field :status, Types::StatusType, null: true

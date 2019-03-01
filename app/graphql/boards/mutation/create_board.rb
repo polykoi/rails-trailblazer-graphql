@@ -1,5 +1,5 @@
-module Mutations
-  class CreateBoard < Mutations::Base
+module Mutation
+  class CreateBoard < BaseMutations
     argument :name, String, required: true
     argument :description, String, required: false
 

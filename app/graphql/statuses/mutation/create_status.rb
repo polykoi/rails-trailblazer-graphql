@@ -1,6 +1,6 @@
 module Mutations
-  class UpdateStatus < Mutations::Base
-    argument :id, ID, required: true
+  class CreateStatus < BaseMutations
+    argument :board_id, ID, required: true
     argument :name, String, required: true
     argument :position, Integer, required: true
 
@@ -8,7 +8,7 @@ module Mutations
     field :errors, [Types::ErrorType], null: false
 
     def resolve(**params)
-      orchestrate Boards::Statuses::Operation::Update, :status, params: params
+      orchestrate Boards::Statuses::Operation::Create, :status, params: params
     end
   end
 end

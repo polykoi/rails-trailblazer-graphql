@@ -36,7 +36,7 @@ gem 'graphql'
 gem 'acts_as_list'
 
 # Role management
-# gem 'rolify'
+gem 'rolify'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

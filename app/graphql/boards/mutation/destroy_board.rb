@@ -1,5 +1,5 @@
-module Mutations
-  class DestroyBoard < Mutations::Base
+module Mutation
+  class DestroyBoard < BaseMutations
     argument :id, ID, required: true
 
     field :board, Types::BoardType, null: true

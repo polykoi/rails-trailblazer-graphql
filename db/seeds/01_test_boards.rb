@@ -1,28 +1,20 @@
+statuses = [['Backlog', 'In Progress', 'Done'], ['Backlog', 'In Progress', 'Review', 'Done']]
 
-boards_data = %w[Board1 Board2].map do |board_name|
-  { name: board_name, description: "#{board_name} description" }
+2.times do |index|
+  user = User.create(email: "user#{index}@example.com", first_name: 'User', last_name: "#{index}", password: "Password#{index}")
+  board = Board.create(name: "Board #{index}", description: "Board #{index} description")
+  user.grant(:owner, board)
+
+  statuses[index].each do |status_name|
+    status = Status.create({ name: status_name, board: board })
+    if status_name == 'Backlog'
+      2.times do |cards_index|
+        card_name = "Card #{index}-#{cards_index}"
+        Card.create(name: card_name, description: "#{card_name} description", status: status)
+      end
+    elsif status_name == 'In Progress'
+      card_name = "Card #{index}-3"
+      Card.create(name: card_name, description: "#{card_name} description", status: status)
+    end
+  end
 end
-
-Board.create(boards_data)
-
-statuses_data = []
-cards_data = []
-
-['Backlog', 'In Progress', 'Done'].each do |status_name|
-  statuses_data << { name: status_name, board: Board.find(1) }
-end
-
-['Backlog', 'In Progress', 'Review', 'Done'].each do |status_name|
-  statuses_data << { name: status_name, board: Board.find(2) }
-end
-
-Status.create(statuses_data)
-
-%w[Card1-1 Card1-2 Card1-3].each do |card_name|
-  cards_data << { name: card_name, description: "#{card_name} description", status: Board.find(1).statuses.find_by(name: 'Backlog') }
-end
-
-cards_data << { name: 'Card2-1', description: "Card2-1 description", status: Board.find(2).statuses.find_by(name: 'Backlog') }
-cards_data << { name: 'Card2-2', description: "Card2-1 description", status: Board.find(2).statuses.find_by(name: 'In Progress') }
-
-Card.create(cards_data)

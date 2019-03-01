@@ -1,8 +1,9 @@
-module Statuses::Operation
+module Boards::Statuses::Operation
   class Destroy < Trailblazer::Operation
     step Model(Status, :find_by)
 
-    step :check_cards_present
+    step :cards_absent?
+    fail Macro::Error(base: I18n.t('status.must_be_empty'))
     step :destroy
 
     def cards_absent(ctx, model:, **)

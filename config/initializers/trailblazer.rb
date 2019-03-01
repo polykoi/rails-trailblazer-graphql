@@ -1,13 +1,9 @@
 # frozen_string_literal: true
 
-# enabled deprecations to avoid old style
-# require "trailblazer/deprecation/call"
-# require "trailblazer/deprecation/context"
-
 require 'reform'
 require 'reform/form/dry'
-# require 'reform/form/coercion'
-# require 'jsonapi/serializable'
+
+Dir[Rails.root.join('lib', 'macro', '**', '*.rb')].each { |file| require file }
 
 Rails.application.configure do
   config.trailblazer.enable_loader = false

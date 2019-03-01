@@ -1,4 +1,4 @@
-module Types
+module Boards
   class BoardType < GraphQL::Schema::Object
     field :id, ID, null: false
     field :name, String, null: false
