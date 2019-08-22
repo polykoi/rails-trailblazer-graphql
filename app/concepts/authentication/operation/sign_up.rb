@@ -4,18 +4,12 @@ module Authentication::Operation
   class SignUp < Trailblazer::Operation
     SESSION_EXPIRY = 24.hours.to_i
 
+    step Model(User, :new)
     step Contract::Build(constant: Authentication::Contract::SignUp)
     step Contract::Validate()
+    step Contract::Persist()
 
-    step :create_user
     step :create_session
-
-    def create_user(ctx, **)
-      ctx[:model] = User.create(password: ctx['contract.default'].password,
-                                email: ctx['contract.default'].email,
-                                naem: ctx['contract.default'].name,
-      )
-    end
 
     def create_session(ctx, model:, **)
       id = model.id

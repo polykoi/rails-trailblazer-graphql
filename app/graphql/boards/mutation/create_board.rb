@@ -1,13 +1,15 @@
-module Mutation
-  class CreateBoard < BaseMutations
-    argument :name, String, required: true
-    argument :description, String, required: false
+module Boards
+  module Mutation
+    class CreateBoard < Lib::AuthenticatedMutation
+      argument :name, String, required: true
+      argument :description, String, required: false
 
-    field :board, Types::BoardType, null: true
-    field :errors, [Types::ErrorType], null: false
+      field :board, Boards::BoardType, null: true
+      field :errors, [ErrorType], null: false
 
-    def resolve(**params)
-      orchestrate Boards::Operation::Create, :board, params: params
+      def resolve(**params)
+        orchestrate Boards::Operation::Create, :board, params: params
+      end
     end
   end
 end

@@ -4,17 +4,22 @@ module Authentication
   def self.included(base)
     base.class_eval do
       include JWTSessions::RailsAuthorization
-
-      # rescue_from JWTSessions::Errors::Unauthorized do
-      #   head :unauthorized
-      # end
     end
   end
 
   def current_user
+    @current_user ||= found_access_token ? User.find_by(id: access_payload['user_id']) : nil
+  end
 
-    # binding.pry
+  private
 
-    @current_user ||= found_token ? User.find_by(id: payload['user_id']) : nil
+  def found_access_token
+    raw_token = request_headers[JWTSessions.header_by('access')] || ""
+    raw_token.split(" ")[-1]
+  end
+
+  def access_payload
+    claims = respond_to?(:token_claims) ? token_claims : {}
+    @_payload ||= JWTSessions::Token.decode(found_access_token, claims).first
   end
 end

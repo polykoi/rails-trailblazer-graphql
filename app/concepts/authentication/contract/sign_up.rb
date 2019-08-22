@@ -4,11 +4,12 @@ module Authentication::Contract
   class SignUp < Reform::Form
     PASSWORD_MIN_LENGTH = 6
 
-    property :password, virtual: true
+    property :first_name
     property :email
+    property :password, readable: false
 
     validation :default do
-      required(:name).filled(:str?)
+      required(:first_name).filled(:str?)
       required(:email).filled(:str?)
       required(:password).filled(
         :str?,

@@ -1,7 +1,7 @@
 class MutationType < GraphQL::Schema::Object
   field :sign_up, mutation: Authentication::Mutation::SignUp
   # field :sign_in, mutation: Authentication::SignIn
-  # field :create_board, mutation: Mutations::CreateBoard
+  field :create_board, mutation: Boards::Mutation::CreateBoard
   # field :update_board, mutation: Mutations::UpdateBoard
   # field :destroy_board, mutation: Mutations::DestroyBoard
 
