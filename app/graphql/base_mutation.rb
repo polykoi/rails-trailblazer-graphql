@@ -7,6 +7,7 @@ class BaseMutation < GraphQL::Schema::Mutation
     if result.success?
       {
         field_name => result[:model],
+        meta: result[:meta],
         errors: []
       }
     else
@@ -15,6 +16,7 @@ class BaseMutation < GraphQL::Schema::Mutation
 
       {
         field_name => nil,
+        meta: nil,
         errors: Lib::Service::ErrorsConverter.call(errors.messages)
       }
     end

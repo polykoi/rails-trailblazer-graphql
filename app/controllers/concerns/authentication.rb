@@ -12,6 +12,9 @@ module Authentication
   end
 
   def current_user
+
+    # binding.pry
+
     @current_user ||= found_token ? User.find_by(id: payload['user_id']) : nil
   end
 end
