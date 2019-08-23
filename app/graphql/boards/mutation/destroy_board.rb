@@ -1,12 +1,14 @@
-module Mutation
-  class DestroyBoard < BaseMutations
-    argument :id, ID, required: true
+module Boards
+  module Mutation
+    class DestroyBoard < BaseMutations
+      argument :id, ID, required: true
 
-    field :board, Types::BoardType, null: true
-    field :errors, [Types::ErrorType], null: false
+      field :board, Boards::BoardType, null: true
+      field :errors, [ErrorType], null: false
 
-    def resolve(**params)
-      orchestrate Boards::Operation::Destroy, :board, params: params
+      def resolve(**params)
+        orchestrate Boards::Operation::Destroy, :board, params: params
+      end
     end
   end
 end

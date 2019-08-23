@@ -2,7 +2,7 @@ class BaseMutation < GraphQL::Schema::Mutation
   private
 
   def orchestrate(operation, field_name, options = {})
-    result = operation.call(options)
+    result = operation.call(**options, current_user: context[:current_user])
 
     if result.success?
       {
