@@ -27,6 +27,7 @@ abort('The Rails environment is running in production mode!') if Rails.env.produ
 
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
+require 'json_matchers/rspec'
 require 'sidekiq/testing'
 require 'support/helpers'
 
@@ -97,3 +98,5 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+JsonMatchers.schema_root = 'spec/support/schemas'

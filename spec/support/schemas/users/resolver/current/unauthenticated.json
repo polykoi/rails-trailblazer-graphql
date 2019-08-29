@@ -1,0 +1,108 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "data",
+    "errors"
+  ],
+  "properties": {
+    "data": {
+      "$id": "#/properties/data",
+      "type": "object",
+      "title": "The Data Schema",
+      "required": [
+        "currentUser"
+      ],
+      "properties": {
+        "currentUser": {
+          "$id": "#/properties/data/properties/currentUser",
+          "type": "null",
+          "title": "The Currentuser Schema",
+          "default": null,
+          "examples": [
+            null
+          ]
+        }
+      }
+    },
+    "errors": {
+      "$id": "#/properties/errors",
+      "type": "array",
+      "title": "The Errors Schema",
+      "items": {
+        "$id": "#/properties/errors/items/0",
+        "type": "object",
+        "title": "The 0 Schema",
+        "required": [
+          "message",
+          "locations",
+          "path"
+        ],
+        "properties": {
+          "message": {
+            "$id": "#/properties/errors/items/0/properties/message",
+            "type": "string",
+            "title": "The Message Schema",
+            "default": "",
+            "examples": [
+              "Authenticated users only"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "locations": {
+            "$id": "#/properties/errors/items/0/properties/locations",
+            "type": "array",
+            "title": "The Locations Schema",
+            "items": {
+              "$id": "#/properties/errors/items/0/properties/locations/items/0",
+              "type": "object",
+              "title": "The 0 Schema",
+              "required": [
+                "line",
+                "column"
+              ],
+              "properties": {
+                "line": {
+                  "$id": "#/properties/errors/items/0/properties/locations/items/0/properties/line",
+                  "type": "integer",
+                  "title": "The Line Schema",
+                  "default": 0,
+                  "examples": [
+                    1
+                  ]
+                },
+                "column": {
+                  "$id": "#/properties/errors/items/0/properties/locations/items/0/properties/column",
+                  "type": "integer",
+                  "title": "The Column Schema",
+                  "default": 0,
+                  "examples": [
+                    3
+                  ]
+                }
+              }
+            }
+          },
+          "path": {
+            "$id": "#/properties/errors/items/0/properties/path",
+            "type": "array",
+            "title": "The Path Schema",
+            "items": {
+              "$id": "#/properties/errors/items/0/properties/path/items/0",
+              "type": "string",
+              "title": "The 0 Schema",
+              "default": "",
+              "examples": [
+                "currentUser"
+              ],
+              "pattern": "^(.*)$"
+            }
+          }
+        }
+      }
+    }
+  }
+}

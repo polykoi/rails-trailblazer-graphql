@@ -182,6 +182,9 @@ GEM
     iniparse (1.4.4)
     jaro_winkler (1.5.1)
     json (2.1.0)
+    json_matchers (0.11.1)
+      json_schema
+    json_schema (0.20.7)
     jwt (2.1.0)
     jwt_sessions (2.2.2)
       jwt (>= 2.1, < 3)
@@ -401,6 +404,7 @@ DEPENDENCIES
   fasterer
   ffaker
   graphql
+  json_matchers
   jwt_sessions
   letter_opener
   letter_opener_web!

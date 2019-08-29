@@ -1,0 +1,53 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "data"
+  ],
+  "properties": {
+    "data": {
+      "$id": "#/properties/data",
+      "type": "object",
+      "title": "The Data Schema",
+      "required": [
+        "currentUser"
+      ],
+      "properties": {
+        "currentUser": {
+          "$id": "#/properties/data/properties/currentUser",
+          "type": "object",
+          "title": "The Currentuser Schema",
+          "required": [
+            "email",
+            "firstName"
+          ],
+          "properties": {
+            "email": {
+              "$id": "#/properties/data/properties/currentUser/properties/email",
+              "type": "string",
+              "title": "The Email Schema",
+              "default": "",
+              "examples": [
+                "emmett_steuber@luettgenfeest.ca"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "firstName": {
+              "$id": "#/properties/data/properties/currentUser/properties/firstName",
+              "type": "string",
+              "title": "The Firstname Schema",
+              "default": "",
+              "examples": [
+                "Gayle"
+              ],
+              "pattern": "^(.*)$"
+            }
+          }
+        }
+      }
+    }
+  }
+}

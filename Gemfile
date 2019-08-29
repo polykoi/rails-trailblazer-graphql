@@ -74,7 +74,6 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-# group :test do
-#   # API documentation
-#   gem 'dox', require: false
-# end
+group :test do
+  gem 'json_matchers'
+end

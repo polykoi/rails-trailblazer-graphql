@@ -5,30 +5,3 @@ class QueryType < GraphQL::Schema::Object
     # argument :id, ID, 'Id', required: true
   # end
 end
-
-# type user {
-#   [Boards]
-#   [Cards]
-# }
-
-# type users {
-#   [Boards]
-#   [Cards]
-# }
-
-# type current_user {
-#   [Boards]
-#   [Cards]
-# }
-
-# type board {
-#   [Statuses]
-#   [Cards]
-#   [Users]
-# }
-
-# type card {
-#   Board
-#   Status
-#   User
-# }

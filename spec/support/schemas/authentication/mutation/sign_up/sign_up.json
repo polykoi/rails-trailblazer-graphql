@@ -1,0 +1,116 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "data"
+  ],
+  "properties": {
+    "data": {
+      "$id": "#/properties/data",
+      "type": "object",
+      "title": "The Data Schema",
+      "required": [
+        "signUp"
+      ],
+      "properties": {
+        "signUp": {
+          "$id": "#/properties/data/properties/signUp",
+          "type": "object",
+          "title": "The Signup Schema",
+          "required": [
+            "user",
+            "meta"
+          ],
+          "properties": {
+            "user": {
+              "$id": "#/properties/data/properties/signUp/properties/user",
+              "type": "object",
+              "title": "The User Schema",
+              "required": [
+                "id",
+                "firstName",
+                "email"
+              ],
+              "properties": {
+                "id": {
+                  "$id": "#/properties/data/properties/signUp/properties/user/properties/id",
+                  "type": "string",
+                  "title": "The Id Schema",
+                  "default": "",
+                  "examples": [
+                    "19"
+                  ],
+                  "pattern": "^(.*)$"
+                },
+                "firstName": {
+                  "$id": "#/properties/data/properties/signUp/properties/user/properties/firstName",
+                  "type": "string",
+                  "title": "The Firstname Schema",
+                  "default": "",
+                  "examples": [
+                    "Name 1"
+                  ],
+                  "pattern": "^(.*)$"
+                },
+                "email": {
+                  "$id": "#/properties/data/properties/signUp/properties/user/properties/email",
+                  "type": "string",
+                  "title": "The Email Schema",
+                  "default": "",
+                  "examples": [
+                    "user1@example.com"
+                  ],
+                  "pattern": "^(.*)$"
+                }
+              }
+            },
+            "meta": {
+              "$id": "#/properties/data/properties/signUp/properties/meta",
+              "type": "object",
+              "title": "The Meta Schema",
+              "required": [
+                "tokens"
+              ],
+              "properties": {
+                "tokens": {
+                  "$id": "#/properties/data/properties/signUp/properties/meta/properties/tokens",
+                  "type": "object",
+                  "title": "The Tokens Schema",
+                  "required": [
+                    "access",
+                    "refresh"
+                  ],
+                  "properties": {
+                    "access": {
+                      "$id": "#/properties/data/properties/signUp/properties/meta/properties/tokens/properties/access",
+                      "type": "string",
+                      "title": "The Access Schema",
+                      "default": "",
+                      "examples": [
+                        "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NjcwODEzNDEsInVzZXJfaWQiOjE5LCJ1aWQiOiJkM2MwNTUxNS0zYjg4LTQxYWEtYjQxZi01MDY3NzkwNzhlOTUiLCJleHAiOjE1NjcwODEzNDF9.2RFclJuH5nZqkRb3tlj45dOsJBd1iY7DXLEjzSHTJlU"
+                      ],
+                      "pattern": "^(.*)$"
+                    },
+                    "refresh": {
+                      "$id": "#/properties/data/properties/signUp/properties/meta/properties/tokens/properties/refresh",
+                      "type": "string",
+                      "title": "The Refresh Schema",
+                      "default": "",
+                      "examples": [
+                        "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NjcwODEzNDEsInVzZXJfaWQiOjE5LCJ1aWQiOiI2MzJmYWQzNC0zM2RjLTQxMTEtYmQ0OS0yNWU4YjZjNjg3OWIiLCJleHAiOjE1Njc2ODI1NDF9.OImUDn4gb22hZlA1APg9yf7fIqFjow1LB_F5dTNNuoE"
+                      ],
+                      "pattern": "^(.*)$"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

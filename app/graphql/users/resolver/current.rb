@@ -1,6 +1,6 @@
 module Users
   module Resolver
-    class Current < BaseResolver
+    class Current < Lib::AuthenticatedResolver
       type Users::UserType, null: true
 
       def resolve
